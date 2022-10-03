@@ -21,7 +21,7 @@
         height: 35px;
       }
       .primaryButton {
-        margin: 3%;
+        margin-top: 20px;
         width: 100px;
         height: 40px;
         background-color: lightcyan;
@@ -43,6 +43,16 @@
         font-size: large;
         color: red;
       }
+      .form {
+        display: flex;
+        flex-direction: column;
+        margin: 0% 2%;
+        height: 300px;
+      }
+      .refreshContainer {
+        margin-left: 2%;
+        margin-bottom: 2%;
+      }
       h1 {
         font-style: oblique;
         font-family: fantasy;
@@ -60,6 +70,15 @@
         font-family: fantasy;
         font-size: large;
         padding: 0 6em;
+      }
+      label {
+        font-style: oblique;
+        font-family: fantasy;
+        font-size: x-large;
+      }
+      input {
+        width: fit-content;
+        background-color: lightcyan;
       }
     </style>
   </head>
@@ -91,9 +110,15 @@
         </table>
       </div>
     </div>
-    <div class="buttonContainer">
+    <div class="refreshContainer">
       <button class="primaryButton" (click)="loadTodos()">Refresh</button>
-      <button class="primaryButton">Add</button>
+    </div>
+    <div class="form">
+      <label for="desc">Description:</label>
+      <input type="text" id="desc" name="desc" [(ngModel)]="description" />
+      <label for="sum">Summary:</label>
+      <input type="text" id="sum" name="sum" [(ngModel)]="summary" />
+      <button class="primaryButton" (click)="addTodo()">Add</button>
     </div>
   </div>
 </html>

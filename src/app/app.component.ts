@@ -8,19 +8,33 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   todos: any[] = [];
+  summary: string;
+  description: string;
 
   constructor(private http: HttpClient) {
     this.loadTodos();
+    this.summary = '';
+    this.description = '';
   }
 
   loadTodos() {
-    this.http.get('http://localhost:8080/todos').subscribe((todos: any) => {
+    this.http.get('/todos').subscribe((todos: any) => {
       this.todos = todos;
     });
   }
 
-  deleteTodo = (id: number) =>
+  deleteTodo(id: number) {
     this.http
-      .delete('http://localhost:8080/todos/' + id)
+      .delete('/todos/' + id)
       .subscribe((response: any) => console.log(response));
+  }
+
+  addTodo() {
+    this.http
+      .post('/todos', {
+        summary: this.summary,
+        description: this.description,
+      })
+      .subscribe((response: any) => console.log(response));
+  }
 }
